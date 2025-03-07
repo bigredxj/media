@@ -35,8 +35,8 @@ public class VideoHomeFragment extends Fragment {
             FragmentManager fragmentManager = getChildFragmentManager();
             // 或者使用 getActivity().getSupportFragmentManager() 如果你使用的是支持库的Fragment
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            VideoPlayerFragment playerFragment = new VideoPlayerFragment();
-            fragmentTransaction.add(R.id.container_video_player_fragment, playerFragment);
+            //VideoPlayerFragment playerFragment = new VideoPlayerFragment();
+            //fragmentTransaction.add(R.id.container_video_player_fragment, playerFragment);
             VideoDirFragment dirFragment = new VideoDirFragment();
             fragmentTransaction.add(R.id.container_video_dir_fragment, dirFragment);
             fragmentTransaction.commit();

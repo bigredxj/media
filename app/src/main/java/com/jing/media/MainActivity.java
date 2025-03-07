@@ -16,16 +16,17 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.jing.media.databinding.ActivityMainBinding;
 import com.jing.media.music.MusicService;
+import com.jing.media.play.PlayService;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private MusicService musicService;
-
+    private PlayService playService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        playService = PlayService.getInstance();
+        playService.setContext(this);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

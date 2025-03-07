@@ -46,6 +46,7 @@ public class VideoFragment extends Fragment {
         List<Video> videoList = listVideo(videoDir);
         VideoArrayAdapter adapter = new VideoArrayAdapter(getActivity(), R.layout.video_item, videoList);
         listView.setAdapter(adapter);
+        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("ResourceType")
             @Override
@@ -55,15 +56,13 @@ public class VideoFragment extends Fragment {
                 playVideo(video);
             }
         });
+
+         */
         return root;
     }
 
     private List<Video> listVideo(VideoDir videoDir){
         return  videoService.listVideo(videoDir.getFile());
-    }
-
-    private void playVideo(Video video){
-       videoService.play(video);
     }
 
 }

@@ -19,25 +19,14 @@ import static androidx.media3.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL;
 
 public class VideoPlayerFragment extends Fragment {
     private FragmentVideoPlayerBinding binding;
-    private VideoService videoService=VideoService.getInstance();
-    private ExoPlayer player;
-    private PlayerView playerView;
     private View rootView;
-    private CacheUtil cacheUtil = CacheUtil.getInstance();
 
     @OptIn(markerClass = UnstableApi.class)
     public View onCreateView(@NonNull LayoutInflater inflater,
                                                                      ViewGroup container, Bundle savedInstanceState) {
             binding = FragmentVideoPlayerBinding.inflate(inflater, container, false);
             rootView = binding.getRoot();
-            cacheUtil.setVideoPlayView(rootView);
-            videoService = VideoService.getInstance();
-            player = new ExoPlayer.Builder(this.getActivity()).build();
-            playerView = rootView.findViewById(R.id.video_player_view);
-            playerView.setResizeMode(RESIZE_MODE_FILL);
-            playerView.setPlayer(player);
-            videoService.setPlayer(player);
-            videoService.setPlayerView(playerView);
+
 
         return rootView;
 

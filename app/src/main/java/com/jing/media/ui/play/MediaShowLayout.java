@@ -36,6 +36,7 @@ public class MediaShowLayout extends LinearLayout {
         params.width = screenWidth;
         params.height = screenWidth/2;
         playerView.setLayoutParams(params);
+
        // MusicPlayerFragment playerFragment = new MusicPlayerFragment();
 
 
@@ -48,14 +49,5 @@ public class MediaShowLayout extends LinearLayout {
         super.onConfigurationChanged(newConfig);
         // 屏幕旋转发生时的处理逻辑
     }
-
-
-
-    public void play(Music music){
-        playService.playMusic(music);
-
-    }
-
-
 
 }

@@ -3,10 +3,7 @@ package com.jing.media.music;
 import lombok.Data;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -14,7 +11,10 @@ import java.util.stream.Collectors;
 public class MusicService {
     private String customRootPath="aaa";
 
-    private List<Music> musicList;
+    private List<Music> musicPlayList;
+    private List<MusicDir> musicDirList;
+
+    private Map<String,List<Music>> mapMusic = new HashMap<>();
 
     private HashSet<String> formatSet = new HashSet<>();
     {
@@ -35,10 +35,12 @@ public class MusicService {
 
     }
     public List<MusicDir> listCustomMusicDir(){
-        List<MusicDir> musicList = new ArrayList<>();
-        File file = new File("/storage/emulated/0/"+customRootPath);
-        listFileMusicDir(file,musicList);
-        return musicList;
+        if(musicDirList==null||musicDirList.size()==0) {
+            musicDirList = new ArrayList<>();
+            File file = new File("/storage/emulated/0/" + customRootPath);
+            listFileMusicDir(file, musicDirList);
+        }
+        return musicDirList;
     }
 
     public void  listFileMusicDir(File file,List<MusicDir> list){
@@ -82,15 +84,20 @@ public class MusicService {
         return b;
     }
 
-    public List<Music> getCacheMusicList(){
-        return musicList;
+    public List<Music> getMusicPlayList(){
+        return musicPlayList;
     }
 
     public List<Music> listMusic(File file){
-        File[] files = file.listFiles();
-        musicList = Arrays.stream(files).map(f-> Music.build(f)
-        ).collect(Collectors.toList());
-
+        String path = file.getAbsolutePath();
+        List<Music> musicList = mapMusic.get(path);
+        if(musicList==null||musicList.size()==0) {
+            File[] files = file.listFiles();
+            musicList = Arrays.stream(files).map(f -> Music.build(f)
+            ).collect(Collectors.toList());
+            mapMusic.put(path,musicList);
+        }
+        musicPlayList = musicList;
         return musicList;
     }
 

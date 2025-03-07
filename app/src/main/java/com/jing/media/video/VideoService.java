@@ -8,21 +8,17 @@ import com.jing.media.video.VideoDir;
 import lombok.Data;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 @Data
 public class VideoService {
-
-    private ExoPlayer player;
-    private PlayerView playerView;
     private String customRootPath="aaa";
 
-    private List<Video> videoList;
+    private List<VideoDir> videoDirList;
+    private List<Video> videoPlayList;
+    private Map<String,List<Video>> mapVideo = new HashMap<>();
 
     private HashSet<String> formatSet = new HashSet<>();
     {
@@ -37,16 +33,13 @@ public class VideoService {
         return service;
     }
 
-    public String test(){
-        File file = new File("/storage/emulated/0/"+customRootPath);
-        return file.getAbsolutePath();
-
-    }
     public List<VideoDir> listCustomVideoDir(){
-        List<VideoDir> videoList = new ArrayList<>();
-        File file = new File("/storage/emulated/0/"+customRootPath);
-        listFileVideoDir(file,videoList);
-        return videoList;
+        if(videoDirList==null||videoDirList.size()==0) {
+            videoDirList=new ArrayList<>();
+            File file = new File("/storage/emulated/0/" + customRootPath);
+            listFileVideoDir(file, videoDirList);
+        }
+        return videoDirList;
     }
 
     public void  listFileVideoDir(File file,List<VideoDir> list){
@@ -90,34 +83,21 @@ public class VideoService {
         return b;
     }
 
+    public List<Video> getVideoPlayList(){
+        return videoPlayList;
+    }
     public List<Video> listVideo(File file){
-        File[] files = file.listFiles();
-        videoList = Arrays.stream(files).map(f-> Video.build(f)
-        ).collect(Collectors.toList());
-
+        String path = file.getAbsolutePath();
+        List<Video> videoList = mapVideo.get(path);
+        if(videoList==null||videoList.size()==0) {
+            File[] files = file.listFiles();
+            videoList = Arrays.stream(files).map(f -> Video.build(f)
+            ).collect(Collectors.toList());
+            mapVideo.put(path,videoList);
+        }
+        videoPlayList = videoList;
         return videoList;
     }
 
-    public void play(Video video){
-        player.clearMediaItems();
-        player.addMediaItem(buildMediaItem(video));
-        if(videoList!=null){
-            List<MediaItem> items =  videoList.stream()
-                    .map(m->buildMediaItem(m)).collect(Collectors.toList());
-            player.addMediaItems(items);
-        }
 
-        player.prepare();
-        player.setPlayWhenReady(true);
-        //player.play();
-    }
-
-    public MediaItem buildMediaItem(Video video){
-        MediaItem item =  new MediaItem.Builder()
-                //.setMediaId(music.getName())
-                .setTag(video.getName())
-                .setUri(video.getPath())
-                .build();
-        return item;
-    }
 }
