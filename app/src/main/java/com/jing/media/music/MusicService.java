@@ -1,8 +1,10 @@
 package com.jing.media.music;
 
+import android.view.WindowManager;
 import androidx.media3.common.MediaItem;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerView;
+import com.jing.media.ui.MediaShowLayout;
 import lombok.Data;
 
 import java.io.File;
@@ -19,6 +21,9 @@ public class MusicService {
     private ExoPlayer player;
     private PlayerView playerView;
     private String customRootPath="aaa";
+
+   private WindowManager showWindowManager;
+   private MediaShowLayout mediaShowLayout;
 
     private List<Music> musicList;
 

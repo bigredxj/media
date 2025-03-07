@@ -11,10 +11,8 @@ import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerView;
 import com.jing.media.R;
-import com.jing.media.databinding.FragmentMusicPlayerBinding;
 import com.jing.media.databinding.FragmentVideoPlayerBinding;
-import com.jing.media.music.MusicService;
-import com.jing.media.util.CacheUtil;
+import com.jing.media.utils.CacheUtil;
 import com.jing.media.video.VideoService;
 
 import static androidx.media3.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL;

@@ -1,9 +1,8 @@
-package com.jing.media.util;
+package com.jing.media.utils;
 
 
 import android.view.View;
 import androidx.fragment.app.Fragment;
-import com.jing.media.music.MusicService;
 import lombok.Data;
 
 @Data

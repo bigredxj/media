@@ -53,6 +53,8 @@ public class MusicDirFragment extends Fragment {
                     openFragment(musicDir);
                 }
             });
+
+
         }
         return rootView;
     }

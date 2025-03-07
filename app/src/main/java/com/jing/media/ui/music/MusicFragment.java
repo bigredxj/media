@@ -41,6 +41,7 @@ public class MusicFragment extends Fragment {
         List<Music> musicList = listMusic(musicDir);
         MusicArrayAdapter adapter = new MusicArrayAdapter(getActivity(), R.layout.music_item, musicList);
         listView.setAdapter(adapter);
+        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("ResourceType")
             @Override
@@ -50,6 +51,8 @@ public class MusicFragment extends Fragment {
                 playMusic(music);
             }
         });
+
+         */
         return root;
     }
 

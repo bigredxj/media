@@ -17,6 +17,8 @@ public class MusicHomeFragment extends Fragment {
     private FragmentMusicHomeBinding binding;
     private boolean first =true;
     private View rootView;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         if(rootView==null) {

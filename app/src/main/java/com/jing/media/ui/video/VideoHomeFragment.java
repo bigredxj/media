@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.jing.media.R;
 import com.jing.media.databinding.FragmentVideoHomeBinding;
-import com.jing.media.util.CacheUtil;
+import com.jing.media.utils.CacheUtil;
 
 
 public class VideoHomeFragment extends Fragment {
@@ -19,6 +19,7 @@ public class VideoHomeFragment extends Fragment {
     private View rootView;
     private boolean first =true;
     private CacheUtil cacheUtil = CacheUtil.getInstance();
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
             binding = FragmentVideoHomeBinding.inflate(inflater, container, false);
