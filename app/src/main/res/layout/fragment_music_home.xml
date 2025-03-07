@@ -8,8 +8,8 @@
     <FrameLayout
             android:id="@+id/container_music_player_fragment"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-    />
+            android:layout_height="0dp"
+            tools:ignore="Suspicious0dp"/>
 
     <FrameLayout
             android:id="@+id/container_music_dir_fragment"

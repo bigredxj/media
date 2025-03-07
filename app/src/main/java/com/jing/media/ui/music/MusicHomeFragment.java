@@ -34,8 +34,8 @@ public class MusicHomeFragment extends Fragment {
             FragmentManager fragmentManager = getChildFragmentManager();
             // 或者使用 getActivity().getSupportFragmentManager() 如果你使用的是支持库的Fragment
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            MusicPlayerFragment playerFragment = new MusicPlayerFragment();
-            fragmentTransaction.add(R.id.container_music_player_fragment, playerFragment);
+            //MusicPlayerFragment playerFragment = new MusicPlayerFragment();
+           // fragmentTransaction.add(R.id.container_music_player_fragment, playerFragment);
             MusicDirFragment dirFragment = new MusicDirFragment();
             fragmentTransaction.add(R.id.container_music_dir_fragment, dirFragment);
 

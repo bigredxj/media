@@ -23,12 +23,6 @@ public class MusicPlayerFragment extends Fragment {
         if(rootView==null) {
             binding = FragmentMusicPlayerBinding.inflate(inflater, container, false);
             rootView = binding.getRoot();
-            musicService = MusicService.getInstance();
-            player = new ExoPlayer.Builder(this.getActivity()).build();
-            playerView = rootView.findViewById(R.id.music_player_view);
-            playerView.setPlayer(player);
-            musicService.setPlayer(player);
-            musicService.setPlayerView(playerView);
         }
         return rootView;
 

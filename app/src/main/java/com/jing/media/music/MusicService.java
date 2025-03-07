@@ -1,10 +1,5 @@
 package com.jing.media.music;
 
-import android.view.WindowManager;
-import androidx.media3.common.MediaItem;
-import androidx.media3.exoplayer.ExoPlayer;
-import androidx.media3.ui.PlayerView;
-import com.jing.media.ui.MediaShowLayout;
 import lombok.Data;
 
 import java.io.File;
@@ -17,13 +12,7 @@ import java.util.stream.Collectors;
 
 @Data
 public class MusicService {
-
-    private ExoPlayer player;
-    private PlayerView playerView;
     private String customRootPath="aaa";
-
-   private WindowManager showWindowManager;
-   private MediaShowLayout mediaShowLayout;
 
     private List<Music> musicList;
 
@@ -93,6 +82,10 @@ public class MusicService {
         return b;
     }
 
+    public List<Music> getCacheMusicList(){
+        return musicList;
+    }
+
     public List<Music> listMusic(File file){
         File[] files = file.listFiles();
         musicList = Arrays.stream(files).map(f-> Music.build(f)
@@ -101,26 +94,7 @@ public class MusicService {
         return musicList;
     }
 
-    public void play(Music music){
-        player.clearMediaItems();
-        player.addMediaItem(buildMediaItem(music));
-        if(musicList!=null){
-           List<MediaItem> items =  musicList.stream()
-                   .map(m->buildMediaItem(m)).collect(Collectors.toList());
-            player.addMediaItems(items);
-        }
 
-        player.prepare();
-        player.setPlayWhenReady(true);
-        //player.play();
-    }
 
-    public MediaItem buildMediaItem(Music music){
-        MediaItem item =  new MediaItem.Builder()
-                //.setMediaId(music.getName())
-                .setTag(music.getName())
-                .setUri(music.getPath())
-                .build();
-        return item;
-    }
+
 }

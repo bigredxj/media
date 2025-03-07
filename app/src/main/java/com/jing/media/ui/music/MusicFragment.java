@@ -57,16 +57,7 @@ public class MusicFragment extends Fragment {
     }
 
     private List<Music> listMusic(MusicDir musicDir){
-
         return  musicService.listMusic(musicDir.getFile());
-    }
-
-    private void playMusic(Music music){
-
-        MediaItem mediaItem = MediaItem.fromUri(music.getPath());
-       // player.setMediaItem(mediaItem);
-       // player.prepare();
-       musicService.play(music);
     }
 
 }

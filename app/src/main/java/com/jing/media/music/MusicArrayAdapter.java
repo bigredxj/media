@@ -8,13 +8,14 @@ import android.view.*;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.jing.media.R;
-import com.jing.media.ui.MediaShowLayout;
+import com.jing.media.play.PlayService;
+import com.jing.media.ui.play.MediaShowLayout;
 
 import java.util.List;
 
 public class MusicArrayAdapter extends ArrayAdapter<Music> {
     private Context context;
-    private MusicService musicService;
+    private PlayService playService;
     private WindowManager showWindowManager;
     private WindowManager.LayoutParams showParam;
     private long startTime;
@@ -24,7 +25,7 @@ public class MusicArrayAdapter extends ArrayAdapter<Music> {
     public MusicArrayAdapter(Context context, int resource, List<Music> objects) {
         super(context, resource, objects);
         this.context = context;
-        musicService = MusicService.getInstance();
+        playService = PlayService.getInstance();
         createShowWindowManager();
     }
 
@@ -73,11 +74,11 @@ public class MusicArrayAdapter extends ArrayAdapter<Music> {
      */
     private void createShowWindowManager() {
         // 取得系统窗体
-        showWindowManager = musicService.getShowWindowManager();
+        showWindowManager = playService.getShowWindowManager();
         if(showWindowManager == null) {
             showWindowManager = (WindowManager) context.getApplicationContext()
                     .getSystemService(Context.WINDOW_SERVICE);
-            musicService.setShowWindowManager(showWindowManager);
+            playService.setShowWindowManager(showWindowManager);
             // 窗体的布局样式
             showParam = new WindowManager.LayoutParams();
             // 设置窗体显示类型——TYPE_SYSTEM_ALERT(系统提示)
@@ -106,11 +107,11 @@ public class MusicArrayAdapter extends ArrayAdapter<Music> {
      * 创建悬浮窗体
      */
     private MediaShowLayout createMediaShowLayout() {
-        MediaShowLayout desktopLayout =  musicService.getMediaShowLayout();
+        MediaShowLayout desktopLayout =  playService.getMediaShowLayout();
         if(desktopLayout == null) {
             desktopLayout=new MediaShowLayout(context);
             showWindowManager.addView(desktopLayout, showParam);
-            musicService.setMediaShowLayout(desktopLayout);
+            playService.setMediaShowLayout(desktopLayout);
             desktopLayout.setOnTouchListener(new View.OnTouchListener() {
                 float mTouchStartX;
                 float mTouchStartY;
