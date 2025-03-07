@@ -31,16 +31,15 @@ public class MediaShowLayout extends LinearLayout {
         playerView.setPlayer(player);
         playService.setPlayer(player);
         playService.setPlayerView(playerView);
+
+        screenWidth = ScreenUtils.getScreenWidth(context);
         playerView.setPadding(15, 0, 15, 0);
         ViewGroup.LayoutParams params = playerView.getLayoutParams();
         params.width = screenWidth;
         params.height = screenWidth/2;
         playerView.setLayoutParams(params);
 
-       // MusicPlayerFragment playerFragment = new MusicPlayerFragment();
 
-
-        screenWidth = ScreenUtils.getScreenWidth(context);
         this.addView(floatView);
     }
 

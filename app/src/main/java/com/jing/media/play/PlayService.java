@@ -34,6 +34,7 @@ public class PlayService {
     private PlayerView playerView;
     private MediaShowLayout mediaShowLayout;
 
+
     private MusicService musicService = MusicService.getInstance();
     private VideoService videoService = VideoService.getInstance();
 
